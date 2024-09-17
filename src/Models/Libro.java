@@ -13,6 +13,9 @@ public class Libro {
         this.precio = precio;
     }
 
+    public Libro() {
+    }
+
     public String getTitulo() {
         return titulo;
     }

@@ -1,4 +1,5 @@
 import Models.Libro;
+import Models.Libros;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,17 +9,49 @@ public class Main {
     private static final Scanner entrada = new Scanner(System.in);
     public static void main(String[] args) {
         int opcion;
+        String nombre;
+        String autor;
+        int anio;
+        double precio;
+        Libro libro;
         System.out.println("Hello world!");
-        List<Libro> libros = new ArrayList<Libro>(10);
+        Libros libros = new Libros();
         libros.add(new Libro("Si lo crees, lo creas", "Bryan Tracy", 1998, 20000));
         libros.add(new Libro("Ganar amigos e influir sobre las personas", "Dale Carnagie", 1930, 25000));
         libros.add(new Libro("Los 7 habitos de la gente altamente efectiva", "Stephen R. Covey", 1970, 30000));
 
-        System.out.println(libros.get(2).toString());
+
         do {
             menu();
             opcion = entrada.nextInt();
-        }while (opcion =! 0);
+            switch (opcion){
+                case 1:
+                    libros.add(libros.agregarLibro());
+
+                    break;
+                case 2:
+                    System.out.println("Introduzca el Titulo del libro para realizar la busqueda");
+                    entrada.nextLine();
+                    nombre = entrada.nextLine();
+                    if(libros.buscarLibroTitulo(nombre)){
+                        System.out.println("Libro encontrado");
+                    }else {
+                        System.out.println("Libro no encontrado");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Introduzca titulo del libro a eliminar");
+                    entrada.nextLine();
+                    nombre = entrada.nextLine();
+                    if(libros.eliminarLibro(nombre)){
+                        System.out.println("Libro eliminado");
+                    }else{
+                        System.out.println("Libro no encontrado");
+                    }
+                    break;
+
+            }
+        }while (opcion !=0);
     }
 
     public static void menu(){
@@ -29,8 +62,6 @@ public class Main {
         System.out.println("4. Modificar Libro");
         System.out.println("0. Salir");
     }
-    public static void añadirLibro(List<Libro> libros){
 
-    }
 
 }
