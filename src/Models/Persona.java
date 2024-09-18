@@ -7,23 +7,25 @@ public class Persona {
     //y altura.
     private String nombre = "";
     private String DNI = "";
-    private int edad=0;
+    private int edad = 0;
     private Sexo sexo = Sexo.M;
-    private double weight=0;
-    private double height=0;
+    private double weight = 0;
+    private double height = 0;
 
     public Persona() {
+        this.DNI = getDniRandom();
     }
 
     public Persona(String nombre, int edad, Sexo sexo) {
         this.nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;
+        this.DNI = getDniRandom();
     }
 
-    public Persona(String nombre, String DNI, int edad, Sexo sexo, double weight, double height) {
+    public Persona(String nombre, int edad, Sexo sexo, double weight, double height) {
         this.nombre = nombre;
-        this.DNI = DNI//funcion private generaDNI();
+        this.DNI = getDniRandom();
         this.edad = edad;
         this.sexo = sexo;
         this.weight = weight;
@@ -44,7 +46,6 @@ public class Persona {
     }
 
 
-
     public int getEdad() {
         return edad;
     }
@@ -58,8 +59,8 @@ public class Persona {
         return sexo;
     }
 
-    public Persona setSexo(Sexo sexo) {
-        this.sexo = sexo;
+    public Persona setSexo(String sexo) {
+        this.sexo = checkSex(sexo);
         return this;
     }
 
@@ -81,4 +82,51 @@ public class Persona {
         return this;
     }
 
+    private String getDniRandom() {
+        String dni;
+        int numDni = (int) Math.round(Math.random() * 100000000);
+        dni = String.valueOf(numDni);
+
+        return dni;
+    }
+
+    public int calcularIMC() {
+        double imc = this.weight / (this.height * this.height);
+        int rta;
+        if (imc < 20) {
+            rta = -1;
+        } else if (imc >= 20 && imc <= 25) {
+            rta = 0;
+        } else {
+            rta = 1;
+        }
+        return rta;
+    }
+
+    public boolean esMayorDeEdad() {
+        boolean b = true;
+        if (this.edad > 18) {
+            b = false;
+        }
+
+        return b;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", DNI='" + DNI + '\'' +
+                ", edad=" + edad +
+                ", sexo=" + sexo +
+                ", weight=" + weight +
+                ", height=" + height +
+                '}';
+    }
+
+    private Sexo checkSex(String sexoMucho) {
+        return sexoMucho.compareToIgnoreCase(String.valueOf(Sexo.M)) == 0 ? Sexo.M : Sexo.F;
+    }
 }
