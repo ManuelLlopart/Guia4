@@ -49,6 +49,10 @@ public class Main {
                         System.out.println("Libro no encontrado");
                     }
                     break;
+                case 4:
+                    System.out.println("Introduzca titulo del libro a modificar");
+                    entrada.nextLine();
+                    nombre=entrada.nextLine();
 
             }
         }while (opcion !=0);

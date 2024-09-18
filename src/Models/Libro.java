@@ -1,12 +1,16 @@
 package Models;
 
+import java.util.UUID;
+
 public class Libro {
+    private String id;
     private String titulo;
     private String autor;
     private int ano;
     private double precio;
 
     public Libro(String titulo, String autor, int ano, double precio) {
+        this.id = UUID.randomUUID().toString();
         this.titulo = titulo;
         this.autor = autor;
         this.ano = ano;
@@ -14,6 +18,7 @@ public class Libro {
     }
 
     public Libro() {
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getTitulo() {

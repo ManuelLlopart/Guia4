@@ -58,4 +58,16 @@ public class Libros {
         return false;
     }
 
+    public boolean cambiarPrecio(String titulo){
+        for (Libro libro : libros) {
+            if (libro.getTitulo().equals(titulo)) {
+                System.out.println("Ingrese nuevo precio");
+                libro.setPrecio(ingreso.nextDouble());
+                return true;
+            }
+        }
+        return false;
+
+    }
+
 }
